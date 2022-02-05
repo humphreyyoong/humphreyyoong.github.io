@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>macOS 环境下配置 Derby 数据库 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="打开终端，即 terminal。 创建新的.bash_profile文件（如果有或创建过此文件，跳过此步骤）,输入 1touch ~&#x2F;.bash_profile 打开此文件,输入 1open -t ~&#x2F;.bash_profile  先对环境变量进行解释： 1234JAVA_HOME: Java的安装路径（决定Java和Javac命令能不能用）；DERBY_HOME: Derby数据库的安装路径；P">
+<meta property="og:type" content="article">
+<meta property="og:title" content="macOS 环境下配置 Derby 数据库">
+<meta property="og:url" content="http://example.com/2020/04/25/macOS-%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%85%8D%E7%BD%AE-Derby-%E6%95%B0%E6%8D%AE%E5%BA%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="打开终端，即 terminal。 创建新的.bash_profile文件（如果有或创建过此文件，跳过此步骤）,输入 1touch ~&#x2F;.bash_profile 打开此文件,输入 1open -t ~&#x2F;.bash_profile  先对环境变量进行解释： 1234JAVA_HOME: Java的安装路径（决定Java和Javac命令能不能用）；DERBY_HOME: Derby数据库的安装路径；P">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/terminal.png">
+<meta property="article:published_time" content="2020-04-25T05:33:01.000Z">
+<meta property="article:modified_time" content="2020-06-08T04:24:35.770Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="macOS">
+<meta property="article:tag" content="Derby">
+<meta property="article:tag" content="数据库">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/terminal.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-macOS-环境下配置-Derby-数据库" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/25/macOS-%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%85%8D%E7%BD%AE-Derby-%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
+  <time datetime="2020-04-25T05:33:01.000Z" itemprop="datePublished">2020-04-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      macOS 环境下配置 Derby 数据库
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>打开终端，即 terminal。<br><img src="/images/terminal.png" alt="terminal"></p>
+<p>创建新的.bash_profile文件（如果有或创建过此文件，跳过此步骤）,输入<br> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">touch</span> ~/.bash_profile</span><br></pre></td></tr></table></figure></p>
+<p>打开此文件,输入</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open -t ~/.bash_profile</span><br></pre></td></tr></table></figure>
+
+<p>先对环境变量进行解释：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">JAVA_HOME: Java的安装路径（决定Java和Javac命令能不能用）；</span><br><span class="line">DERBY_HOME: Derby数据库的安装路径；</span><br><span class="line">PATH: 终端读取的路径（决定java -jar $DERBY_HOME/lib/derbyrun.jar server start能不能用）；</span><br><span class="line">CLASSPATH:class文件的安装路径（决定java org.apache.derby.tools.ij命令能不能用）；</span><br></pre></td></tr></table></figure>
+
+<p>接着继续，在刚打开的文件中添加Derby的环境变量。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home</span><br><span class="line">export DERBY_HOME=/Library/Java/db-derby-10.14.2.0-bin</span><br><span class="line">export PATH=$JAVA_HOME/bin:$DERBY_HOME:.</span><br><span class="line">export CLASSPATH=$DERBY_HOME/lib/derby.jar:$DERBY_HOME/lib/derbyclient.jar:$DERBY_HOME/lib/derbytools.jar:.</span><br></pre></td></tr></table></figure>
+<p>按cmd+s保存文件。 运行文件，使其生效，输入</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span>  ~/.bash_profile</span><br></pre></td></tr></table></figure>
+
+<p>查看Derby信息，输入</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java org.apache.derby.tools.sysinfo</span><br></pre></td></tr></table></figure>
+<p>如果弹出以下内容则说明配置成功</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">------------------ Java 信息 ------------------</span><br><span class="line">Java Version:    10.0.2</span><br><span class="line">Java Vendor:     Oracle Corporation</span><br><span class="line">Java home:       /Library/Java/JavaVirtualMachines/jdk1.8.0.jdk/Contents/Home/jre</span><br><span class="line">Java classpath:  /Users/me/src:/Users/me/sw/z/db-derby-10.14.2.0-bin/lib/derby.jar:/Users/me/sw/z/db-derby-10.14.2.0-bin/lib/derby.war:/Users/me/sw/z/db-derby-10.14.2.0-bin/lib/derbyLocale_cs.jar:/Users/me/sw/z/db-derby-10.14.2.0-bin/lib/derbyLocale_de_DE.jar:/Users/me/sw/z/db-derby-10.14.2.0-bin/lib/derbyLocale_es.jar:/Users/me/sw/z/db-derby-10.14.2.0-bin/lib/derbyLocale_fr.jar:/Users/me/sw/z/db-derby-10.14.2.0-bin/lib/derbyLocale_hu.jar:/Users/me/sw/z/db-derby-10.14.2.0-bin/lib/derbyLocale_it.jar:/Users/me/sw/z/db-derby-10.14.2.0-bin/lib/derbyLocale_ja_JP.jar:/Users/me/sw/z/db-derby-10.14.2.0-bin/lib/derbyLocale_ko_KR.jar:/Users/me/sw/z/db-derby-10.14.2.0-bin/lib/derbyLocale_pl.jar:/Users/me/sw/z/db-derby-10.14.2.0-bin/lib/derbyLocale_pt_BR.jar:/Users/me/sw/z/db-derby-10.14.2.0-bin/lib/derbyLocale_ru.jar:/Users/me/sw/z/db-derby-10.14.2.0-bin/lib/derbyLocale_zh_CN.jar:/Users/me/sw/z/db-derby-10.14.2.0-bin/lib/derbyLocale_zh_TW.jar:/Users/me/sw/z/db-derby-10.14.2.0-bin/lib/derbyclient.jar:/Users/me/sw/z/db-derby-10.14.2.0-bin/lib/derbynet.jar:/Users/me/sw/z/db-derby-10.14.2.0-bin/lib/derbyoptionaltools.jar:/Users/me/sw/z/db-derby-10.14.2.0-bin/lib/derbyrun.jar:/Users/me/sw/z/db-derby-10.14.2.0-bin/lib/derbytools.jar:/Users/me/sw/db2jcc/lib/db2jcc.jar:/Users/me/sw/db2jcc/lib/db2jcc_license_c.jar:/Users/me/sw/mysql/connectorj/mysql-connector-java-5.0.7/mysql-connector-java-5.0.7-bin.jar:/Users/me/sw/demo/jdbc.concurrent/jars/jdbc-concurrent.jar:/Users/me/sw/demo/tableFunctionWhitePaper/jars/vtis-example.jar</span><br><span class="line">OS name:         Mac OS X</span><br><span class="line">OS architecture: x64_64</span><br><span class="line">OS version:      10.11.5</span><br><span class="line">Java user name:  me</span><br><span class="line">Java user home:  /Users/me</span><br><span class="line">Java user <span class="built_in">dir</span>:   /Users/me/derby/branches/10.14</span><br><span class="line">java.specification.name: Java Platform API Specification</span><br><span class="line">java.specification.version: 1.8</span><br><span class="line">java.runtime.version: 1.8.0-b132</span><br><span class="line">----------------- Derby 信息 ------------------</span><br><span class="line">[/Library/Java/db-derby-10.14.2.0-bin/lib/derby.jar] 10.14.2.0 - (1828579)</span><br><span class="line">[/Library/Java/db-derby-10.14.2.0-bin/lib/derbytools.jar] 10.14.2.0 - (1828579)</span><br><span class="line">---------------- 区域设置信息 ------------------</span><br></pre></td></tr></table></figure>
+
+<p>接着，启动ij环境，输入</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java org.apache.derby.tools.ij</span><br></pre></td></tr></table></figure>
+<p>显示如下内容表示启动成功</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ij 版本 10.14</span><br><span class="line">ij&gt; </span><br></pre></td></tr></table></figure>
+
+<p>接着输入</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar <span class="variable">$DERBY_HOME</span>/lib/derbyrun.jar server start</span><br></pre></td></tr></table></figure>
+
+<p>启动Derby数据库服务器</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MacBook:~ apple$ java -jar <span class="variable">$DERBY_HOME</span>/lib/derbyrun.jar server start</span><br><span class="line">Fri Oct 05 16:28:00 CST 2018 : 已使用基本服务器安全策略安装了 Security Manager。</span><br><span class="line">Fri Oct 05 16:28:22 CST 2018 : Apache Derby 网络服务器 - 10.14.2.0 - (1828579) 已启动并准备接受端口 1527 上的连接</span><br></pre></td></tr></table></figure>
+<p>到这里说明Derby数据库和服务器配置成功啦。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/04/25/macOS-%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%85%8D%E7%BD%AE-Derby-%E6%95%B0%E6%8D%AE%E5%BA%93/" data-id="ckz9pvjm40005e2fv9cehcd79" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Derby/" rel="tag">Derby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/macOS/" rel="tag">macOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/27/macOS-%E7%8E%AF%E5%A2%83%E4%B8%8B%EF%BC%8CVirtualbox-%E5%AE%89%E8%A3%85-Win10-%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%8C%E8%A3%85%E4%BA%86%E6%8F%92%E4%BB%B6%E5%8C%85%EF%BC%8C%E6%94%B9%E4%BA%86%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%8CUSB-%E8%BF%98%E6%98%AF%E4%B8%8D%E8%83%BD%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          macOS 环境下，Virtualbox 安装 Win10 虚拟机，装了插件包，改了配置文件，USB 还是不能用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/23/My-Dream-in-the-New-Era/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">My Dream in the New Era</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Derby/" rel="tag">Derby</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JSP/" rel="tag">JSP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pro-Git/" rel="tag">Pro Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/USB/" rel="tag">USB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VirtualBox/" rel="tag">VirtualBox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win10/" rel="tag">Win10</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/caps-lock/" rel="tag">caps lock</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macOS/" rel="tag">macOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A8%E5%88%B6/" rel="tag">巨制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%95%E7%94%A8%E8%A7%84%E6%A0%BC/" rel="tag">引用规格</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E5%85%AD%E5%B1%8A%E5%B2%AD%E5%8D%97%E6%9D%AF%E8%8B%B1%E8%AF%AD%E5%86%99%E4%BD%9C%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B/" rel="tag">第六届岭南杯英语写作技能大赛</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BE%93%E5%85%A5%E6%B3%95%E5%88%87%E6%8D%A2/" rel="tag">输入法切换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%87%91%E7%AC%94%E5%A5%96/" rel="tag">金笔奖</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Derby/" style="font-size: 10px;">Derby</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JS/" style="font-size: 10px;">JS</a> <a href="/tags/JSP/" style="font-size: 10px;">JSP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Pro-Git/" style="font-size: 15px;">Pro Git</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/USB/" style="font-size: 10px;">USB</a> <a href="/tags/VirtualBox/" style="font-size: 10px;">VirtualBox</a> <a href="/tags/Win10/" style="font-size: 10px;">Win10</a> <a href="/tags/caps-lock/" style="font-size: 10px;">caps lock</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/macOS/" style="font-size: 20px;">macOS</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/%E5%B7%A8%E5%88%B6/" style="font-size: 10px;">巨制</a> <a href="/tags/%E5%BC%95%E7%94%A8%E8%A7%84%E6%A0%BC/" style="font-size: 10px;">引用规格</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E7%AC%AC%E5%85%AD%E5%B1%8A%E5%B2%AD%E5%8D%97%E6%9D%AF%E8%8B%B1%E8%AF%AD%E5%86%99%E4%BD%9C%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B/" style="font-size: 10px;">第六届岭南杯英语写作技能大赛</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 10px;">虚拟机</a> <a href="/tags/%E8%BE%93%E5%85%A5%E6%B3%95%E5%88%87%E6%8D%A2/" style="font-size: 10px;">输入法切换</a> <a href="/tags/%E9%87%91%E7%AC%94%E5%A5%96/" style="font-size: 10px;">金笔奖</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/06/macOS-%E7%8E%AF%E5%A2%83%E4%B8%8BNativefier-%E7%94%9F%E6%88%90%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%8A%A5-A-JavaScript-error-occurred-in-the-main-proces-%E9%94%99%E8%AF%AF/">macOS 环境下 Nativefier 生成的软件报 A JavaScript error occurred in the main proces 错误</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/26/%E6%80%8E%E6%A0%B7%E6%89%8D%E8%83%BD%E9%81%BF%E5%85%8D%E7%86%AC%E5%A4%9C%E5%92%8C%E8%B5%96%E5%BA%8A/">怎样才能避免熬夜和赖床</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/08/Bingo-%E5%B0%B1%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">Bingo 就业管理系统</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/31/%E5%9C%A8%E3%80%8Apro%20git%E3%80%8B%E5%BC%95%E7%94%A8%E6%A0%BC%E5%BC%8F%E6%8E%A8%E9%80%81%E8%BF%99%E8%8A%82%E4%B8%AD%E5%87%BA%E7%8E%B0-topic-refs-remotes-origin-topic-%E6%8A%A5%E9%94%99/">topic:refs/remotes/origin/topic 报错</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/15/Git-%E5%90%88%E5%B9%B6%E5%AD%90%E6%A8%A1%E5%9D%97%E6%94%B9%E5%8A%A8%E6%B2%A1%E6%9C%89%E5%87%BA%E7%8E%B0-%E2%80%98merge-following-commits-not-found%E2%80%99/">Git 合并子模块改动没有出现 ‘merge following commits not found’</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
