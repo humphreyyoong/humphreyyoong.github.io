@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>USPS 物流信息长时间没有更新怎么办？</title>
+    <link href="/2022/02/10/USPS-%E7%89%A9%E6%B5%81%E4%BF%A1%E6%81%AF%E9%95%BF%E6%97%B6%E9%97%B4%E6%B2%A1%E6%9C%89%E6%9B%B4%E6%96%B0%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F/"/>
+    <url>/2022/02/10/USPS-%E7%89%A9%E6%B5%81%E4%BF%A1%E6%81%AF%E9%95%BF%E6%97%B6%E9%97%B4%E6%B2%A1%E6%9C%89%E6%9B%B4%E6%96%B0%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F/</url>
+    
+    <content type="html"><![CDATA[<h2 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h2><p>在海淘的时候，用 USPS 快递，发现物流信息长期未更新，正常来说14天左右就能到国内了，但是我这个快递1个多月了，还是没到，Tracking History 一直卡在 In Transit to Next Facility 那里。因为快递单号是 USPS的单号，用国内的物流软件也查不到信息。如下图所示</p><p><img src="https://image-1257345150.cos.ap-guangzhou.myqcloud.com/usps-tracking-history.PNG" alt="usps-tracking-history"></p><h2 id="办法："><a href="#办法：" class="headerlink" title="办法："></a>办法：</h2><p>如果遇到的和我情况类似，不妨试试下面的办法。USPS 寄回国内不是全程由它运输，而是国外由 USPS 运输，到了国内后转中国邮政配送，到了国内以后 USPS 的 Tracking History 就没有了。这时候，我们可以在手机上下载 <a href="https://parcel.app/">Parcel</a> 这个软件，输入国际物流的订到号，就可以查看到转运信息了。</p><p><img src="https://image-1257345150.cos.ap-guangzhou.myqcloud.com/parcel-deliveries.JPG" alt="parcel-deliveries"></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>macOS 环境下 Nativefier 生成的软件报 A JavaScript error occurred in the main proces 错误</title>
     <link href="/2020/07/06/macOS-%E7%8E%AF%E5%A2%83%E4%B8%8BNativefier-%E7%94%9F%E6%88%90%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%8A%A5-A-JavaScript-error-occurred-in-the-main-proces-%E9%94%99%E8%AF%AF/"/>
     <url>/2020/07/06/macOS-%E7%8E%AF%E5%A2%83%E4%B8%8BNativefier-%E7%94%9F%E6%88%90%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%8A%A5-A-JavaScript-error-occurred-in-the-main-proces-%E9%94%99%E8%AF%AF/</url>
